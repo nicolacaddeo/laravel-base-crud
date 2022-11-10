@@ -19,7 +19,7 @@
             <li>
                 <a href="{{ route('comics.show', $element->id) }}">{{ $element->title }}</a>
             </li>
-            <form action="{{ route('comics.destroy'), ['id' => $element->id] }}" method="POST">
+            <form action="{{ route('comics.destroy', $element->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="submit" value="Delete Comic">
