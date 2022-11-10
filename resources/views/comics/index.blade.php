@@ -19,13 +19,17 @@
             <li>
                 <a href="{{ route('comics.show', $element->id) }}">{{ $element->title }}</a>
             </li>
+            <form action="{{ route('comics.destroy'), ['id' => $element->id] }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Delete Comic">
+            </form>
         @endforeach
 
     </ul>
     <div>
         <button>
             <!--  bottone che restituisce il form per l'aggiunta di un nuovo fumetto -->
-
             <a href="{{ route('comics.create') }}">Add Comic</a>
         </button>
     </div>
