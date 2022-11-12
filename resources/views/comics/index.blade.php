@@ -19,6 +19,9 @@
             <li>
                 <a href="{{ route('comics.show', $element->id) }}">{{ $element->title }}</a>
             </li>
+            <button>
+                <a href="{{ route('comics.edit', $element->id) }}">Update Comic</a>
+            </button>
             <form action="{{ route('comics.destroy', $element->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
