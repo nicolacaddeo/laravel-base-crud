@@ -35,6 +35,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $this->dataValidation($request);
+
         // la funzione si occupa di salvare i nuovi record ricevuti dal form
         $formData = $request->all(); // restituisce un array associativo
 
@@ -100,6 +102,19 @@ class ComicController extends Controller
     {
         $comic->delete();
         return redirect()->route('comics.index');
+    }
+
+    public function dataValidation(Request $request) {
+        $request->validate(
+            [
+                'title' => 'required|unique:comics|max:200|min:1|string',
+                'description' => 'min:1|string',
+                'thumb' => 'url',
+                'price' => 'numeric|min:1',
+                'serie' => 'max:90|min:1|string',
+                'sale_date' => 'date',
+                'type' => 'string|min:1|max:90'
+            ]);
     }
 }
 
